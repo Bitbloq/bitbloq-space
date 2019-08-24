@@ -56,6 +56,7 @@ const documentResolver = {
         const imageUploaded = await uploadResolver.Mutation.singleUpload(
           args.input.image,
           newDocument._id,
+          context.user.userID,
         );
         const newDoc = await DocumentModel.findOneAndUpdate(
           { _id: documentNew._id },
@@ -124,6 +125,7 @@ const documentResolver = {
           const imageUploaded = await uploadResolver.Mutation.singleUpload(
             args.input.image,
             existDocument._id,
+            context.user.userID,
           );
           image = imageUploaded.publicUrl;
         } else if (args.input.imageUrl) {
